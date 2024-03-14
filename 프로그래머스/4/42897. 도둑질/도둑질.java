@@ -13,13 +13,13 @@ class Solution {
         }
         if (n >= 5){
             first[0] = money[0];
-            first[1] = first[1];
+            first[1] = money[1];
             first[2] = money[0] + money[2];
             second[1] = money[1];
             second[2] = money[2];
             second[3] = money[1] + money[3];
             third[2] = money[2];
-            third[3] = third[3];
+            third[3] = money[3];
             third[4] = money[2] + money[4];
             int fi, si, ti;
             // 메인 알고리즘 : dp[i] = Math.max(dp[i-2] + arr[i], dp[i-3] + arr[i])
