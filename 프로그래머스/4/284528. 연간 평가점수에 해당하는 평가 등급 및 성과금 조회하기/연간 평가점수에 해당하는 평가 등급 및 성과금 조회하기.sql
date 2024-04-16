@@ -1,0 +1,25 @@
+-- 코드를 작성해주세요
+SELECT C.EMP_NO, C.EMP_NAME, 
+    CASE
+        WHEN D.BONUS=20 THEN 'S'
+        WHEN D.BONUS=15 THEN 'A'
+        WHEN D.BONUS=10 THEN 'B'
+        ELSE 'C'
+    END AS GRADE,
+    C.SAL * D.BONUS / 100 AS BONUS
+FROM HR_EMPLOYEES C,
+    (
+    SELECT A.EMP_NO,
+        CASE
+            WHEN AVG(B.SCORE) >= 96 THEN 20
+            WHEN AVG(B.SCORE) >= 90 THEN 15
+            WHEN AVG(B.SCORE) >= 80 THEN 10
+            ELSE 0
+        END AS BONUS
+    FROM HR_EMPLOYEES A, HR_GRADE B
+    WHERE A.EMP_NO=B.EMP_NO
+    GROUP BY A.EMP_NO
+    ) D
+WHERE C.EMP_NO=D.EMP_NO
+ORDER BY C.EMP_NO
+;
